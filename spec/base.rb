@@ -14,3 +14,4 @@ rescue LoadError
 end
 
 require File.dirname(__FILE__) + '/../lib/restclient'
+require File.join(File.dirname(__FILE__), 'helpers', 'file_content_helper')
