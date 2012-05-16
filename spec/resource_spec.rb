@@ -1,7 +1,7 @@
 require File.join( File.dirname(File.expand_path(__FILE__)), 'base')
 
 require 'webmock/rspec'
-include WebMock::API
+include WebMock
 
 describe RestClient::Resource do
   before do
