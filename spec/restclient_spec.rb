@@ -7,6 +7,12 @@ describe RestClient do
       RestClient.get('http://some/resource')
     end
 
+    it "GET_with_nested_params" do
+      payload = {:a => {:b => '1' , :c => '2'}}
+      RestClient::Request.should_receive(:execute).with(:method => :get, :url => 'http://some/resource', :payload => payload, :headers => {})
+      RestClient.get_with_nested_params('http://some/resource', payload)
+    end
+
     it "POST" do
       RestClient::Request.should_receive(:execute).with(:method => :post, :url => 'http://some/resource', :payload => 'payload', :headers => {})
       RestClient.post('http://some/resource', 'payload')
