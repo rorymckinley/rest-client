@@ -68,6 +68,10 @@ module RestClient
     Request.execute(:method => :get, :url => url, :headers => headers, &block)
   end
 
+  def self.get_with_nested_params(url, payload, headers={}, &block)
+    Request.execute(:method => :get, :url => url, :payload => payload, :headers => headers, &block)
+  end
+
   def self.post(url, payload, headers={}, &block)
     Request.execute(:method => :post, :url => url, :payload => payload, :headers => headers, &block)
   end
