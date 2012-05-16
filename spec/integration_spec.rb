@@ -23,7 +23,10 @@ describe RestClient do
   it "a request with nested params" do
     body = 'abc'
     params = {:params => {:id => '50', :foo => 'bar'}}
-    stub_request(:get, "http://www.example.com/").to_return(:body => body, :status => 200)
+    stub_request(:get, "http://www.example.com/").                                                                                                                                            
+      with(:body => {"params"=>{"id"=>"50", "foo"=>"bar"}},
+           :headers => {'Accept'=>'*/*; q=0.5, application/xml', 'Accept-Encoding'=>'gzip, deflate', 'Content-Length'=>'29', 'Content-Type'=>'application/x-www-form-urlencoded'}).
+      to_return(:status => 200, :body => "abc", :headers => {})
 
     response = RestClient.get_with_nested_params "www.example.com", params
     response.code.should == 200
