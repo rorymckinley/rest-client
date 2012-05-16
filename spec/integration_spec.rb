@@ -20,6 +20,16 @@ describe RestClient do
     response.body.should == "i'm gziped\n"
   end
 
+  it "a request with nested params" do
+    body = 'abc'
+    params = {:params => {:id => '50', :foo => 'bar'}}
+    stub_request(:get, "http://www.example.com/").to_return(:body => body, :status => 200)
+
+    response = RestClient.get_with_nested_params "www.example.com", params
+    response.code.should == 200
+    response.body.should == body
+  end
+
   it "a 404" do
     body = "Ho hai ! I'm not here !"
     stub_request(:get, "www.example.com").to_return(:body => body, :status => 404)
